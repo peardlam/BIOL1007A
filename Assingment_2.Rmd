@@ -1,0 +1,12 @@
+---
+title: "Assignment_2"
+author: "Pearl L. Dlamini"
+date: "2023-01-10"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+# Middlebury Sunsets!
+
+image: ![](path/to/sunset.jpg)
