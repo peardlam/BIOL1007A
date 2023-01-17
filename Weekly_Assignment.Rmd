@@ -76,7 +76,7 @@ Definition: an R project helps separate your classes or research projects on Git
    + Click the link under "Your site is ready to be published at…"
    + It will take a few minutes for your webpage to be displayed
 
-## Creating More webpages and putting their links on your main webpage, i.e. your portfolio
+## Creating more webpages and putting their links on your main webpage, i.e. your portfolio
 8. To create more R markdown files within the same project, refer to step 5. 
 9. If you want them to all appear on your initial webapage (which is now your portfolio), you can do so by creating links for them:
    + After creating and knitting a new R markdown file, go back to your "index.Rmd" file.
