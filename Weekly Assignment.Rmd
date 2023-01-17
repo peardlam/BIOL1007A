@@ -1,0 +1,96 @@
+---
+title: "Weekly Assignment"
+author: "Pearl L. Dlamini"
+date: "2023-01-16"
+output: html_document
+---
+
+# How To Set Up Github Webpage in R-Studio
+
+## First steps involve Github:
+
+1. Create your Github profile and repository   
+   + Create profile
+   + Log in and click "Create Repository", and name it (e.g. your class). Use an underscore in place of a 'space' between words
+   + Make it "public", add a `README` file and an MIT license   
+   + Do not click on `Add .gitignore` because Git will generate that once you've linked your Github repository to RStudio
+   + Click on "Create Repository"     
+2. Generate your Github Personal Access Token (PAT):
+   + Sign into Github
+   + Click on your profile icon on the top right corner, and click on 'settings' on the drop down menu.
+   + On the left side menu, scroll down and click on 'Developer settings'
+   + Click on 'Personal access tokens' and choose the 'Tokens (classic)' option
+   + Click on 'Generate new token' and pick the **Classic option**
+   + For the note, write the name of your repository
+   + Under 'Expiration', there is a 'custom' option that allows you to choose your own date of expiration.
+   + Click the repo check box, and then scroll down to click on "Generate Token"
+   + **Copy the entire token number** generated and paste it in a document, and save that document.
+   + You will use this PAT for all the repositories that you decide to link to R projects
+
+## Installing Git:   
+Definition: git is a version control software that is used to track the project, which is located in Github, in your local drive.
+
+3. Install Git onto your local drive  
+   + Since you will be using a macbook, you will need to first download the Xcode app onto your laptop.  
+   + Then you will need to download HomeBrew - copy and paste this code: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` into Terminal to dowload it.
+   + Then download and install Git onto your laptop
+   
+## Moving onto RStudio
+
+4. Creating R project:    
+Definition: an R project helps separate your classes or research projects on Github (i.e. if you have multiple repositories) into different contexts. You can generate a main webpage and website links within each R project
+   + open RStudio
+   + Click on 'New Project' on the drop down menu on the top right corner of the screen
+   + Click on 'Version Control' and then select the Git option.
+   + **A quick U-turn to Github**:    
+     * On Github click on your repository and click on the 'code' green button      
+     * Click on the clipboard sign to copy the URL that shows up on the drop down menu
+   + Paste this on the URL box showing on RStudio after selecting the Git option.
+   + Give your R project the exact name as your repository on Github
+   + Use the browse button to find a suitable location on your laptop to save your project, e.g. your desktop. Do not save it onto your downloads folder.
+   + click `Create Project` to finish
+   + add files that do not need to be tracked on the *.gitignore* file, such as *.pdf* files
+   + In the console type this `install.packages("credentials")` to install the 'credentials' package
+   + Then run this code:     
+   `git config --global user.email "put github email here"`      
+`git config --global user.name "put your name here"`        
+`credentials::set_github_pat("put Personal Access Token here")`
+   
+### Building a webpage that will be hosted in Github
+5. Create R Markdown file for webpage
+   + Click on the + sign on the top left corner in RStudio and select R Markdown
+   + Change the title to the name of your research project/ class
+   + Save this file as "index" (it will automatically saved as an .Rmd file)
+   + Click on the Knit button.
+6. Save these changes to Github
+   + On terminal type and run:
+      * git status
+      * git add -A (displays the files that have been changed/created)
+      * git status
+      * git commit -am ‘first commit’ (makes local commit) (a commit is a 'snapshot' of your current file system at that moment)
+      * git status
+      * git push (pushes the changes up to your GitHub repository)
+7. **Another U-turn to Github**
+   + Return to Github and click on 'settings'
+   + Under 'Source' change to 'master branch' (initially it will read 'None')
+   + Click the link under "Your site is ready to be published at…"
+   + It will take a few minutes for your webpage to be displayed
+
+## Creating More webpages and putting their links on your main webpage, i.e. your portfolio
+8. To create more R markdown files within the same project, refer to step 5. 
+9. If you want them to all appear on your initial webapage (which is now your portfolio), you can do so by creating links for them:
+   + After creating and knitting a new R markdown file, go back to your "index.Rmd" file.
+   + On the 'Source' panel type this: `[Name of Link](assignment_name.html)` (ensure that it is the html file)
+10. After this refer to steps 6 - 7 to ensure that these changes are uploaded to Github
+
+### Extras:
+This is your first time setting up a Github webpage in RStudio and it is normal for you to run into a few problems. The notes I have presented serve as an initial guide, if you run into problems after this point click on `Help` on the `Plots / Files / Help` panel and type a keyword in the search engine. You can also use Google; there are many websites on Google that have useful information on using Github and RStudio. 
+
+### Useful Links:
+1. [Pretty Doc](https://prettydoc.statr.me/) This will offer nice alternative R markdown themes to make your webpages aesthetically pleasing.
+2. [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) 
+
+**All The Best!**
+
+
+
