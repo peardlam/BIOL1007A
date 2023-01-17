@@ -4,16 +4,19 @@ author: "Pearl L. Dlamini"
 date: "2023-01-10"
 output:
   prettydoc::html_pretty:
-    theme: cayman
+    theme: hpstr
     highlight: github
 ---
 
-## Assignments
+
+## Daily Exercises
 
 [Assignment 1](Assignment_1.html)  
 
 [Assignment 2](Assignment_2.html)  
 
 [Assignment 3](Assignment_3.html)  
+
+## Weekly Assignments
 
 [Weekly Assignment 1](Weekly_Assignment.html)
