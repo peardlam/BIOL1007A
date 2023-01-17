@@ -11,19 +11,29 @@ output: html_document
 x = 1.1
 a = 2.2
 b = 3.3
+
+# a.
 z = x^a^b
 print(z)
+
+# b.
 z = (x^a)^b
 print(z)
 
+# c.
 z = 3*x^3 + 2*x^2 +1 
 print(z)
 ```
 2. This is question 2:
 ```{r}
+# a.
 c(seq(from=1,to=8), seq(from=7,to=1))
+
+# b.
 z <- rep(seq(from=1, to=5), (1:5))
 print(z)
+
+# c.
 z <- rep(seq(from=5, to=1), (1:5))
 print(z)
 ```
@@ -35,21 +45,27 @@ print(queue)
 story_vec <- c(queue)
 print(story_vec)
 
+# a. the serpent arrives
 story_vec <- c(story_vec[1:4], "serpent")
 print(story_vec)
 
+# b. the sheep enters the ark
 story_vec <- c(story_vec[2:5])
 print(story_vec)
 
+# c. the donkey arrives and talks his way to the front of the line
 story_vec <- c("donkey", story_vec[1:4])
 print(story_vec)
 
+# d. the serpent gets impatient and leaves
 story_vec <- c(story_vec[1:4])
 print(story_vec)
 
+# e. the aphid arrives and the ant invites him to cut in line (hint: check out the append function).
 story_vec <- c(story_vec[1:3], "aphid", story_vec[4])
 print(story_vec)
 
+# f. Finally, determine the position of the aphid in the line (hint: use the which function).
 which (story_vec == "aphid")
 ```
 

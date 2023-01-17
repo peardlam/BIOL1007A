@@ -363,24 +363,31 @@ display: none;
 <pre class="r"><code>x = 1.1
 a = 2.2
 b = 3.3
+
+# a.
 z = x^a^b
 print(z)</code></pre>
 <pre><code>## [1] 3.61714</code></pre>
-<pre class="r"><code>z = (x^a)^b
+<pre class="r"><code># b.
+z = (x^a)^b
 print(z)</code></pre>
 <pre><code>## [1] 1.997611</code></pre>
-<pre class="r"><code>z = 3*x^3 + 2*x^2 +1 
+<pre class="r"><code># c.
+z = 3*x^3 + 2*x^2 +1 
 print(z)</code></pre>
 <pre><code>## [1] 7.413</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>This is question 2:</li>
 </ol>
-<pre class="r"><code>c(seq(from=1,to=8), seq(from=7,to=1))</code></pre>
+<pre class="r"><code># a.
+c(seq(from=1,to=8), seq(from=7,to=1))</code></pre>
 <pre><code>##  [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></pre>
-<pre class="r"><code>z &lt;- rep(seq(from=1, to=5), (1:5))
+<pre class="r"><code># b.
+z &lt;- rep(seq(from=1, to=5), (1:5))
 print(z)</code></pre>
 <pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
-<pre class="r"><code>z &lt;- rep(seq(from=5, to=1), (1:5))
+<pre class="r"><code># c.
+z &lt;- rep(seq(from=5, to=1), (1:5))
 print(z)</code></pre>
 <pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -392,22 +399,28 @@ print(queue)</code></pre>
 <pre class="r"><code>story_vec &lt;- c(queue)
 print(story_vec)</code></pre>
 <pre><code>## [1] &quot;sheep&quot; &quot;fox&quot;   &quot;owl&quot;   &quot;ant&quot;</code></pre>
-<pre class="r"><code>story_vec &lt;- c(story_vec[1:4], &quot;serpent&quot;)
+<pre class="r"><code># a. the serpent arrives
+story_vec &lt;- c(story_vec[1:4], &quot;serpent&quot;)
 print(story_vec)</code></pre>
 <pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code>story_vec &lt;- c(story_vec[2:5])
+<pre class="r"><code># b. the sheep enters the ark
+story_vec &lt;- c(story_vec[2:5])
 print(story_vec)</code></pre>
 <pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code>story_vec &lt;- c(&quot;donkey&quot;, story_vec[1:4])
+<pre class="r"><code># c. the donkey arrives and talks his way to the front of the line
+story_vec &lt;- c(&quot;donkey&quot;, story_vec[1:4])
 print(story_vec)</code></pre>
 <pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code>story_vec &lt;- c(story_vec[1:4])
+<pre class="r"><code># d. the serpent gets impatient and leaves
+story_vec &lt;- c(story_vec[1:4])
 print(story_vec)</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
-<pre class="r"><code>story_vec &lt;- c(story_vec[1:3], &quot;aphid&quot;, story_vec[4])
+<pre class="r"><code># e. the aphid arrives and the ant invites him to cut in line (hint: check out the append function).
+story_vec &lt;- c(story_vec[1:3], &quot;aphid&quot;, story_vec[4])
 print(story_vec)</code></pre>
 <pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
-<pre class="r"><code>which (story_vec == &quot;aphid&quot;)</code></pre>
+<pre class="r"><code># f. Finally, determine the position of the aphid in the line (hint: use the which function).
+which (story_vec == &quot;aphid&quot;)</code></pre>
 <pre><code>## [1] 4</code></pre>
 
 
