@@ -1,0 +1,81 @@
+---
+title: "Assignment 4"
+author: "Pearl L. Dlamini"
+date: "2023-01-17"
+output: html_document
+---
+### Question 1
+```{r}
+n_dims <- c(3)
+print(n_dims)
+
+# a.
+v <- c(1:9)
+print(v)
+
+# b. 
+sample(1:9, size=9)
+
+# c.
+m <- matrix(data = v, nrow=3)
+print(m)
+
+# d.
+tm <- t(m)
+print(tm)
+
+# e. i, mean and sum of first row
+mean(m[1,])
+sum(m[1,])
+
+# e. ii, mean and sum of last row
+mean(m[3,])
+sum(m[3,])
+
+
+```
+### Question 2
+```{r}
+# a.
+my_matrix <- matrix(runif(n=16), nrow=4)
+
+v <- (runif(n=100, min=10, max=100))
+my_logical <- (v < 50)
+
+my_letters <- (sample(letters, 26))
+
+my_list <- list(my_matrix, my_logical, my_letters)
+print (my_list)
+
+# b.
+my_list2 <- list(my_matrix[2,2], my_logical[2], my_letters [2])
+print(my_list2)
+
+# c.
+typeof(my_matrix[2,2])
+
+typeof(my_logical[2])
+
+typeof(my_letters[2])
+
+# d.
+vector2 <- c("0.3617957", "TRUE", "q")
+print(vector2)
+
+# e.
+typeof(vector2)
+
+```
+### Question 3
+```{r}
+# a.
+my_unifs <- runif(26, min=0, max=10)
+my_letters2 <- sample(LETTERS, 26)
+d_Frame <- data.frame(my_unifs, my_letters2)
+print(d_Frame)
+
+# b.
+set.seed(26)
+
+```
+

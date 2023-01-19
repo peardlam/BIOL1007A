@@ -84,3 +84,125 @@ m
 
 m <- matrix(data= my_vec, ncol=3, byrow=T)
 m
+
+#### Lists
+## these are atomic vectors BUT each element can hold different data tyeps (and different sizes)
+
+myList <- list(1:10, matrix(1:8, nrow=4, byrow=TRUE), letters[1:3], pi)
+class(myList)
+str(myList)
+
+### subsetting lists
+## using [] gives you a single item BUT not the elements
+myList[4]
+myList[4] - 3 # single bracket gives you only elements in the slot which is only type list
+
+# to grab object itself use [[]]
+myList[[4]]
+myList[[4]] - 3 # now we access contents only in that part
+
+myList[[2]] # we can access different parts of the matrix
+myList[[2]][4,1] ## 2 dimensional subsetting, -> first number is row index, second is column [4,1] gives 4th row, first column
+
+myList[c(1,2)] # to obtain multiple compartments of the list use single brackets
+
+### Name list items when they are created
+myList2 <- list(Tester = FALSE, littleM = matrix(1:9, nrow=3))
+myList2$Tester
+
+myList2$littleM[2,3] #extracts second row, thir column of littleM
+
+myList2$littleM[2,] #leave blank if you want all elements [2,1] = second row, all columns
+
+myList2$littleM[2] #gives second element
+
+### unlist to string everything back to vector
+unRolled <- unlist(myList2)
+unRolled
+
+
+data(iris)
+head(iris)
+plot(Sepal.Length ~ Petal.Length, data=iris)
+model <- lm(Sepal.Length ~ Petal.Length, data=iris)
+results <- summary(model)
+results
+class(results)
+typeof(results)
+str(results)
+results$coefficients
+results$coefficients[2,4]
+unlist(results)
+unlist(results$coefficients[2,4])
+unlist(results$coefficients)
+unlist(results)$coefficients8
+
+### Data frames 
+## (list of) equal-lengthed vectors, each of which is a column
+
+varA <- 1:12
+varB <- rep(c("Con", "LowN", "HighN"), each=4)
+varC <- runif(12)
+
+dFrame <- data.frame(varA, varB, varC, stringsAsFactors = FALSE)
+str(dFrame)
+
+# add another row
+newData <- list (varA=13, varB="HighN", varC=0.668)
+
+# use rbind()
+dFrame <- rbind(dFrame, newData)
+
+### why can't we use c?
+newData2 <- c(14, "HighN", 0.668) # coerces to charater
+dFrame <- rbind(dFrame, newData2) #all character data types now!
+
+### add a column
+newVar <- runif(14)
+
+# us dim() to check rows and columns
+
+# use cbind() function to add column
+dFrame <- cbind(dFrame, newVar)
+head(dFrame)
+
+### Data framez vs Matrices
+zMat <- matrix(data=1:30, ncol=3, byrow=T)
+zDframe <- as.data.frame(zMat)
+
+str(zDframe)
+
+zMat[3,3]
+zMat [,3]
+zMat[3] # gives third element from first column (top to down)
+zDframe[3] # different !! whole third row is given
+
+##### Eliminating NAs
+# complete.cases() function
+zD <- c(NA, rnorm(10), NA, rnorm(3))
+complete.cases(zD) # gives logical output
+
+# clean out NAs
+zD[complete.cases(zD)]
+which(!complete.cases(zD))
+which(is.na(zD))
+m[1,1] <- NA
+m
+m[5,4] <- NA
+
+complete.case(m) #gives T/F as to whether whole row is 'complete' (no NAs)
+m[complete.cases(m),]
+
+## get complete cases for only certain rows
+m[complete.cases(m[,c(1:2)]),]
+
+
+
+
+
+
+
+
+
+
+
