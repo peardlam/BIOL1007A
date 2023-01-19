@@ -363,14 +363,14 @@ display: none;
 print(n_dims)</code></pre>
 <pre><code>## [1] 3</code></pre>
 <pre class="r"><code># a.
-v &lt;- c(1:9)
+v &lt;- seq(1:n_dims^2)
 print(v)</code></pre>
 <pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
 <pre class="r"><code># b. 
-sample(1:9, size=9)</code></pre>
-<pre><code>## [1] 4 6 8 9 7 1 3 5 2</code></pre>
+sample(v, size=n_dims^2)</code></pre>
+<pre><code>## [1] 7 3 5 4 1 8 6 9 2</code></pre>
 <pre class="r"><code># c.
-m &lt;- matrix(data = v, nrow=3)
+m &lt;- matrix(data = v, nrow=n_dims)
 print(m)</code></pre>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    4    7
@@ -394,6 +394,8 @@ mean(m[3,])</code></pre>
 <pre class="r"><code>sum(m[3,])</code></pre>
 <pre><code>## [1] 18</code></pre>
 </div>
+<div id="assignment-5-4-cont." class="section level2">
+<h2>Assignment 5 (4 cont.)</h2>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
 <pre class="r"><code># a.
@@ -407,37 +409,37 @@ my_letters &lt;- (sample(letters, 26))
 my_list &lt;- list(my_matrix, my_logical, my_letters)
 print (my_list)</code></pre>
 <pre><code>## [[1]]
-##           [,1]      [,2]      [,3]      [,4]
-## [1,] 0.1239342 0.7427622 0.5223162 0.2022216
-## [2,] 0.8277631 0.9964682 0.4113910 0.8841639
-## [3,] 0.6127480 0.4541481 0.7496939 0.8666102
-## [4,] 0.5302742 0.3040478 0.6192352 0.2658698
+##           [,1]      [,2]        [,3]      [,4]
+## [1,] 0.3036722 0.4597566 0.639800643 0.8180986
+## [2,] 0.1469245 0.5551358 0.880279367 0.3209883
+## [3,] 0.7586738 0.9948576 0.009051233 0.5723523
+## [4,] 0.4895615 0.2123270 0.527416761 0.3618453
 ## 
 ## [[2]]
-##   [1]  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
-##  [13] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE
-##  [25] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-##  [37]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
-##  [49]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
-##  [61] FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
-##  [73]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
-##  [85]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE
-##  [97] FALSE FALSE FALSE FALSE
+##   [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+##  [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+##  [25]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [37] FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
+##  [49] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [61] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE
+##  [73]  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
+##  [85] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE
+##  [97]  TRUE  TRUE FALSE  TRUE
 ## 
 ## [[3]]
-##  [1] &quot;b&quot; &quot;u&quot; &quot;o&quot; &quot;k&quot; &quot;e&quot; &quot;q&quot; &quot;r&quot; &quot;c&quot; &quot;n&quot; &quot;g&quot; &quot;j&quot; &quot;l&quot; &quot;s&quot; &quot;z&quot; &quot;x&quot; &quot;p&quot; &quot;a&quot; &quot;d&quot; &quot;f&quot;
-## [20] &quot;v&quot; &quot;m&quot; &quot;y&quot; &quot;w&quot; &quot;t&quot; &quot;h&quot; &quot;i&quot;</code></pre>
+##  [1] &quot;t&quot; &quot;b&quot; &quot;y&quot; &quot;p&quot; &quot;o&quot; &quot;a&quot; &quot;e&quot; &quot;i&quot; &quot;q&quot; &quot;d&quot; &quot;v&quot; &quot;m&quot; &quot;s&quot; &quot;r&quot; &quot;u&quot; &quot;f&quot; &quot;x&quot; &quot;w&quot; &quot;c&quot;
+## [20] &quot;g&quot; &quot;k&quot; &quot;n&quot; &quot;z&quot; &quot;l&quot; &quot;j&quot; &quot;h&quot;</code></pre>
 <pre class="r"><code># b.
 my_list2 &lt;- list(my_matrix[2,2], my_logical[2], my_letters [2])
 print(my_list2)</code></pre>
 <pre><code>## [[1]]
-## [1] 0.9964682
+## [1] 0.5551358
 ## 
 ## [[2]]
 ## [1] FALSE
 ## 
 ## [[3]]
-## [1] &quot;u&quot;</code></pre>
+## [1] &quot;b&quot;</code></pre>
 <pre class="r"><code># c.
 typeof(my_matrix[2,2])</code></pre>
 <pre><code>## [1] &quot;double&quot;</code></pre>
@@ -446,9 +448,9 @@ typeof(my_matrix[2,2])</code></pre>
 <pre class="r"><code>typeof(my_letters[2])</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <pre class="r"><code># d.
-vector2 &lt;- c(&quot;0.3617957&quot;, &quot;TRUE&quot;, &quot;q&quot;)
+vector2 &lt;- c(my_matrix[2,2], my_logical[2], my_letters [2])
 print(vector2)</code></pre>
-<pre><code>## [1] &quot;0.3617957&quot; &quot;TRUE&quot;      &quot;q&quot;</code></pre>
+<pre><code>## [1] &quot;0.555135840782896&quot; &quot;FALSE&quot;             &quot;b&quot;</code></pre>
 <pre class="r"><code># e.
 typeof(vector2)</code></pre>
 <pre><code>## [1] &quot;character&quot;</code></pre>
@@ -461,34 +463,105 @@ my_letters2 &lt;- sample(LETTERS, 26)
 d_Frame &lt;- data.frame(my_unifs, my_letters2)
 print(d_Frame)</code></pre>
 <pre><code>##     my_unifs my_letters2
-## 1  1.3653610           S
-## 2  6.8687616           D
-## 3  0.4494125           Z
-## 4  8.8872974           H
-## 5  2.2270043           M
-## 6  4.6797278           U
-## 7  7.4756741           G
-## 8  8.5264185           F
-## 9  2.4288036           L
-## 10 2.8049331           K
-## 11 3.3227750           E
-## 12 7.1236453           N
-## 13 2.2408867           T
-## 14 7.1124116           I
-## 15 9.0969127           V
-## 16 2.7361198           O
-## 17 8.8157220           R
-## 18 7.0832954           A
-## 19 4.2932361           Y
-## 20 8.3676351           C
-## 21 7.9933671           X
-## 22 8.9089147           Q
-## 23 5.2780391           P
-## 24 5.1940011           J
-## 25 8.3962233           B
-## 26 5.4447196           W</code></pre>
+## 1  5.8874218           J
+## 2  9.1942206           C
+## 3  6.0583436           T
+## 4  4.5416931           K
+## 5  4.0058560           Z
+## 6  6.6594565           F
+## 7  6.2551101           I
+## 8  7.2236042           N
+## 9  8.8337906           E
+## 10 5.1343395           L
+## 11 8.0358653           X
+## 12 3.7963765           P
+## 13 0.9812032           M
+## 14 3.1015572           H
+## 15 6.5983281           R
+## 16 4.7952043           D
+## 17 0.6726459           U
+## 18 9.2005729           W
+## 19 0.5464694           O
+## 20 0.8648424           V
+## 21 3.3050668           S
+## 22 4.7262304           A
+## 23 9.8674106           B
+## 24 8.8744543           Y
+## 25 6.6172710           Q
+## 26 1.8287447           G</code></pre>
 <pre class="r"><code># b.
-set.seed(26)</code></pre>
+sample(my_unifs, 4)</code></pre>
+<pre><code>## [1] 8.8337906 0.8648424 5.8874218 9.8674106</code></pre>
+<pre class="r"><code>d_Frame[sample(1:nrow(d_Frame), 4), 1] &lt;- NA
+print(d_Frame)</code></pre>
+<pre><code>##     my_unifs my_letters2
+## 1         NA           J
+## 2  9.1942206           C
+## 3  6.0583436           T
+## 4  4.5416931           K
+## 5  4.0058560           Z
+## 6         NA           F
+## 7  6.2551101           I
+## 8  7.2236042           N
+## 9  8.8337906           E
+## 10 5.1343395           L
+## 11 8.0358653           X
+## 12 3.7963765           P
+## 13 0.9812032           M
+## 14 3.1015572           H
+## 15 6.5983281           R
+## 16        NA           D
+## 17 0.6726459           U
+## 18 9.2005729           W
+## 19 0.5464694           O
+## 20 0.8648424           V
+## 21 3.3050668           S
+## 22 4.7262304           A
+## 23 9.8674106           B
+## 24        NA           Y
+## 25 6.6172710           Q
+## 26 1.8287447           G</code></pre>
+<pre class="r"><code># c.
+which(is.na(d_Frame))</code></pre>
+<pre><code>## [1]  1  6 16 24</code></pre>
+<pre class="r"><code># d.
+orderedd_Frame &lt;- d_Frame[order(d_Frame$my_letters2),]
+print(orderedd_Frame)</code></pre>
+<pre><code>##     my_unifs my_letters2
+## 22 4.7262304           A
+## 23 9.8674106           B
+## 2  9.1942206           C
+## 16        NA           D
+## 9  8.8337906           E
+## 6         NA           F
+## 26 1.8287447           G
+## 14 3.1015572           H
+## 7  6.2551101           I
+## 1         NA           J
+## 4  4.5416931           K
+## 10 5.1343395           L
+## 13 0.9812032           M
+## 8  7.2236042           N
+## 19 0.5464694           O
+## 12 3.7963765           P
+## 25 6.6172710           Q
+## 15 6.5983281           R
+## 21 3.3050668           S
+## 3  6.0583436           T
+## 17 0.6726459           U
+## 20 0.8648424           V
+## 18 9.2005729           W
+## 11 8.0358653           X
+## 24        NA           Y
+## 5  4.0058560           Z</code></pre>
+<pre class="r"><code># e.
+mean(my_unifs)</code></pre>
+<pre><code>## [1] 5.292542</code></pre>
+<pre class="r"><code>#f 
+colnames(d_Frame)[colnames(d_Frame) == &quot;my_letters2&quot;] &lt;- &quot;my_LETTERS&quot;
+print(colnames(d_Frame))</code></pre>
+<pre><code>## [1] &quot;my_unifs&quot;   &quot;my_LETTERS&quot;</code></pre>
+</div>
 </div>
 
 

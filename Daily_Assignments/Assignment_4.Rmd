@@ -10,14 +10,14 @@ n_dims <- c(3)
 print(n_dims)
 
 # a.
-v <- c(1:9)
+v <- seq(1:n_dims^2)
 print(v)
 
 # b. 
-sample(1:9, size=9)
+sample(v, size=n_dims^2)
 
 # c.
-m <- matrix(data = v, nrow=3)
+m <- matrix(data = v, nrow=n_dims)
 print(m)
 
 # d.
@@ -34,6 +34,7 @@ sum(m[3,])
 
 
 ```
+## Assignment 5 (4 cont.)
 ### Question 2
 ```{r}
 # a.
@@ -59,7 +60,7 @@ typeof(my_logical[2])
 typeof(my_letters[2])
 
 # d.
-vector2 <- c("0.3617957", "TRUE", "q")
+vector2 <- c(my_matrix[2,2], my_logical[2], my_letters [2])
 print(vector2)
 
 # e.
@@ -75,7 +76,24 @@ d_Frame <- data.frame(my_unifs, my_letters2)
 print(d_Frame)
 
 # b.
-set.seed(26)
+sample(my_unifs, 4)
+d_Frame[sample(1:nrow(d_Frame), 4), 1] <- NA
+print(d_Frame)
 
+# c.
+which(is.na(d_Frame))
+
+# d.
+orderedd_Frame <- d_Frame[order(d_Frame$my_letters2),]
+print(orderedd_Frame)
+
+# e.
+mean(my_unifs)
+
+#f 
+colnames(d_Frame)[colnames(d_Frame) == "my_letters2"] <- "my_LETTERS"
+print(colnames(d_Frame))
 ```
 
+
+```{r}
