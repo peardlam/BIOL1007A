@@ -11,12 +11,15 @@ output:
 
 ## Daily Exercises
 
-[Assignment 1](Assignment_1.html)  
+[Assignment 1](Daily_Assignments/Assignment_1.html)  
 
-[Assignment 2](Assignment_2.html)  
+[Assignment 2](Daily_Assignments/Assignment_2.html)  
 
-[Assignment 3](Assignment_3.html)  
+[Assignment 3](Daily_Assignments/Assignment_3.html)
+
+[Assignment 4 & 5](Daily_Assignments/Assignment_4.html)
 
 ## Weekly Assignments
 
 [Weekly Assignment 1](Weekly_Assignment.html)
+
