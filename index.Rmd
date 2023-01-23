@@ -3,11 +3,17 @@ title: "BIOL1007A Web Page"
 author: "Pearl L. Dlamini"
 date: "2023-01-10"
 output:
-  prettydoc::html_pretty:
+ prettydoc::html_pretty:
     theme: hpstr
     highlight: github
 ---
+<p style="font-family: times, serif; font-size:14pt; font-style:italic">
+Hi! Welcome to my BIOL007A webpage! My name is Pearl, and I am majoring in Molecular Biology and Biochemistry. I decided to take the BIOL007A course because I am keen on learning how to code using R. Using code in RStudio to create a webpage like this one is an absolute bonus! 
+</p>
 
+<p style="font-family: times, serif; font-size:12pt; font-style:standard">
+Below are links to my daily and weekly assignments from class.
+</p>
 
 ## Daily Exercises
 
@@ -21,5 +27,8 @@ output:
 
 ## Weekly Assignments
 
-[Weekly Assignment 1](Weekly_Assignment.html)
+[Weekly Assignment 1](Weekly_Assignments/Weekly_Assignment.html)
+
+[Weekly Assignment 2](Weekly_Assignments/Weekly_Assignment_2.html)
+
 

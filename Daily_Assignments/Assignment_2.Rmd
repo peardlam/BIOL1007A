@@ -9,7 +9,7 @@ output:
 ---
 # Middlebury Sunsets!
 
-![Fall Sunset](Sunsets.jpg) 
+![Fall Sunset](Sunsets.jpg){#id .class width=30% height=50%}
 
 Middlebury is known for having one of the most *exquisite* sunsets!   
 Read on to find out the different average times the sun sets in Middlebury during different times of the year, and the colors mostly displayed, in order to **not miss out** on the splendor!       

@@ -11,9 +11,9 @@
 
 <meta name="author" content="Pearl L. Dlamini" />
 
-<meta name="date" content="2023-01-12" />
+<meta name="date" content="2023-01-22" />
 
-<title>Assignment 3</title>
+<title>Weekly Assignment 2</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,74 +350,72 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Assignment 3</h1>
+<h1 class="title toc-ignore">Weekly Assignment 2</h1>
 <h4 class="author">Pearl L. Dlamini</h4>
-<h4 class="date">2023-01-12</h4>
+<h4 class="date">2023-01-22</h4>
 
 </div>
 
 
-<div id="question-1." class="section level3">
-<h3>Question 1.</h3>
-<pre class="r"><code>x = 1.1
-a = 2.2
-b = 3.3
-
-# a.
-z = x^a^b
-print(z)</code></pre>
-<pre><code>## [1] 3.61714</code></pre>
-<pre class="r"><code># b.
-z = (x^a)^b
-print(z)</code></pre>
-<pre><code>## [1] 1.997611</code></pre>
-<pre class="r"><code># c.
-z = 3*x^3 + 2*x^2 +1 
-print(z)</code></pre>
-<pre><code>## [1] 7.413</code></pre>
+<div id="question-1" class="section level3">
+<h3>Question 1</h3>
+<pre class="r"><code>myFunc &lt;- function(a=10, b=45){
+  Type &lt;- rep(c(&quot;Control&quot;, &quot;Treatment&quot;), each=25)  
+  Value &lt;- c(rnorm(25, mean=10, sd=1.5), rnorm(25, mean=45, sd=2))
+  d_Frame &lt;- data.frame(Type, Value)
+  return(d_Frame)
+}</code></pre>
 </div>
-<div id="question-2." class="section level3">
-<h3>Question 2.</h3>
-<pre class="r"><code># a.
-c(seq(from=1,to=8), seq(from=7,to=1))</code></pre>
-<pre><code>##  [1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></pre>
-<pre class="r"><code># b.
-z &lt;- rep(seq(from=1, to=5), (1:5))
-print(z)</code></pre>
-<pre><code>##  [1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></pre>
-<pre class="r"><code># c.
-z &lt;- rep(seq(from=5, to=1), (1:5))
-print(z)</code></pre>
-<pre><code>##  [1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></pre>
+<div id="question-2" class="section level3">
+<h3>Question 2</h3>
+<pre class="r"><code>data_Frame &lt;- myFunc()
+head(data_Frame)</code></pre>
+<pre><code>##      Type     Value
+## 1 Control  9.681364
+## 2 Control  9.464442
+## 3 Control  9.663953
+## 4 Control 10.140534
+## 5 Control 10.272595
+## 6 Control  8.811619</code></pre>
 </div>
-<div id="question-3." class="section level3">
-<h3>Question 3.</h3>
-<pre class="r"><code>queue &lt;- c(&quot;sheep&quot;,&quot;fox&quot;,&quot;owl&quot;,&quot;ant&quot;)
-print(queue)</code></pre>
-<pre><code>## [1] &quot;sheep&quot; &quot;fox&quot;   &quot;owl&quot;   &quot;ant&quot;</code></pre>
-<pre class="r"><code># a. the serpent arrives
-queue &lt;- c(queue[1:4], &quot;serpent&quot;)
-print(queue)</code></pre>
-<pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code># b. the sheep enters the ark
-queue &lt;- c(queue[2:5])
-print(queue)</code></pre>
-<pre><code>## [1] &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code># c. the donkey arrives and talks his way to the front of the line
-queue &lt;- c(&quot;donkey&quot;, queue[1:4])
-print(queue)</code></pre>
-<pre><code>## [1] &quot;donkey&quot;  &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
-<pre class="r"><code># d. the serpent gets impatient and leaves
-queue &lt;- c(queue[1:4])
-print(queue)</code></pre>
-<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;ant&quot;</code></pre>
-<pre class="r"><code># e. the aphid arrives and the ant invites him to cut in line (hint: check out the append function).
-queue &lt;- c(queue[1:3], &quot;aphid&quot;, queue[4])
-print(queue)</code></pre>
-<pre><code>## [1] &quot;donkey&quot; &quot;fox&quot;    &quot;owl&quot;    &quot;aphid&quot;  &quot;ant&quot;</code></pre>
-<pre class="r"><code># f. Finally, determine the position of the aphid in the line (hint: use the which function).
-which (queue == &quot;aphid&quot;)</code></pre>
-<pre><code>## [1] 4</code></pre>
+<div id="question-3" class="section level3">
+<h3>Question 3</h3>
+<pre class="r"><code>ANOVA &lt;- aov(Value~Type, data = myFunc())
+summary(ANOVA)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## Type         1  15290   15290    5302 &lt;2e-16 ***
+## Residuals   48    138       3                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>unlist(summary(ANOVA))</code></pre>
+<pre><code>##          Df1          Df2      Sum Sq1      Sum Sq2     Mean Sq1     Mean Sq2 
+## 1.000000e+00 4.800000e+01 1.529021e+04 1.384268e+02 1.529021e+04 2.883893e+00 
+##     F value1     F value2      Pr(&gt;F)1      Pr(&gt;F)2 
+## 5.301935e+03           NA 8.518455e-51           NA</code></pre>
+</div>
+<div id="question-4" class="section level3">
+<h3>Question 4</h3>
+<pre class="r"><code># Function name: ANOVA_2
+#Input: data frame with two columns
+# Output: p_value
+ANOVA_2 &lt;- function(data_frame = NULL){
+  if (is.null(data_frame)){
+    data_frame &lt;- myFunc()
+  }
+  
+  if (length(data_frame)!=2) {
+    return(&quot;Function failure: data frame must have two columns&quot;)
+  }
+  
+   data_frame &lt;- myFunc()
+   colnames(data_frame) &lt;- c(&quot;Explanatory&quot;,&quot;Response&quot;)
+   my_aov &lt;- aov(Response~Explanatory, data = data_frame)
+   anova_summary &lt;- summary(my_aov)
+   my_out &lt;- anova_summary$coefficiants[,4]
+   return(my_out)
+}
+ANOVA_2()</code></pre>
+<pre><code>## NULL</code></pre>
 </div>
 
 

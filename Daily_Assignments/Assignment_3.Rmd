@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-1. This is question 1:
+### Question 1.
 ```{r}
 x = 1.1
 a = 2.2
@@ -24,7 +24,7 @@ print(z)
 z = 3*x^3 + 2*x^2 +1 
 print(z)
 ```
-2. This is question 2:
+### Question 2.
 ```{r}
 # a.
 c(seq(from=1,to=8), seq(from=7,to=1))
@@ -37,7 +37,7 @@ print(z)
 z <- rep(seq(from=5, to=1), (1:5))
 print(z)
 ```
-3. This is question 3:
+### Question 3.
 ```{r}
 queue <- c("sheep","fox","owl","ant")
 print(queue)

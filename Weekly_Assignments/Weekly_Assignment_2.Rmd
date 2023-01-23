@@ -1,0 +1,50 @@
+---
+title: "Weekly Assignment 2"
+author: "Pearl L. Dlamini"
+date: "2023-01-22"
+output: html_document
+---
+### Question 1
+```{r}
+myFunc <- function(a=10, b=45){
+  Type <- rep(c("Control", "Treatment"), each=25)  
+  Value <- c(rnorm(25, mean=10, sd=1.5), rnorm(25, mean=45, sd=2))
+  d_Frame <- data.frame(Type, Value)
+  return(d_Frame)
+}
+```
+### Question 2
+```{r}
+data_Frame <- myFunc()
+head(data_Frame)
+```
+### Question 3
+```{r}
+ANOVA <- aov(Value~Type, data = myFunc())
+summary(ANOVA)
+unlist(summary(ANOVA))
+```
+### Question 4
+```{r}
+# Function name: ANOVA_2
+#Input: data frame with two columns
+# Output: p_value
+ANOVA_2 <- function(data_frame = NULL){
+  if (is.null(data_frame)){
+    data_frame <- myFunc()
+  }
+  
+  if (length(data_frame)!=2) {
+    return("Function failure: data frame must have two columns")
+  }
+  
+   data_frame <- myFunc()
+   colnames(data_frame) <- c("Explanatory","Response")
+   my_aov <- aov(Response~Explanatory, data = data_frame)
+   anova_summary <- summary(my_aov)
+   my_out <- anova_summary$coefficiants[,4]
+   return(my_out)
+}
+ANOVA_2()
+```
+
