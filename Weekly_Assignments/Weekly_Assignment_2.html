@@ -371,27 +371,22 @@ display: none;
 <pre class="r"><code>data_Frame &lt;- myFunc()
 head(data_Frame)</code></pre>
 <pre><code>##      Type     Value
-## 1 Control  9.681364
-## 2 Control  9.464442
-## 3 Control  9.663953
-## 4 Control 10.140534
-## 5 Control 10.272595
-## 6 Control  8.811619</code></pre>
+## 1 Control  8.523802
+## 2 Control  9.634401
+## 3 Control  7.974142
+## 4 Control  8.543163
+## 5 Control 10.846001
+## 6 Control 11.680671</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
 <pre class="r"><code>ANOVA &lt;- aov(Value~Type, data = myFunc())
 summary(ANOVA)</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  15290   15290    5302 &lt;2e-16 ***
-## Residuals   48    138       3                   
+## Type         1  15258   15258    3779 &lt;2e-16 ***
+## Residuals   48    194       4                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>unlist(summary(ANOVA))</code></pre>
-<pre><code>##          Df1          Df2      Sum Sq1      Sum Sq2     Mean Sq1     Mean Sq2 
-## 1.000000e+00 4.800000e+01 1.529021e+04 1.384268e+02 1.529021e+04 2.883893e+00 
-##     F value1     F value2      Pr(&gt;F)1      Pr(&gt;F)2 
-## 5.301935e+03           NA 8.518455e-51           NA</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
@@ -407,15 +402,15 @@ ANOVA_2 &lt;- function(data_frame = NULL){
     return(&quot;Function failure: data frame must have two columns&quot;)
   }
   
-   data_frame &lt;- myFunc()
+   #data_frame &lt;- myFunc()
    colnames(data_frame) &lt;- c(&quot;Explanatory&quot;,&quot;Response&quot;)
    my_aov &lt;- aov(Response~Explanatory, data = data_frame)
    anova_summary &lt;- summary(my_aov)
-   my_out &lt;- anova_summary$coefficiants[,4]
+   my_out &lt;- c(anova_summary[[1]][&quot;Explanatory&quot;, &quot;Pr(&gt;F)&quot;])
    return(my_out)
 }
 ANOVA_2()</code></pre>
-<pre><code>## NULL</code></pre>
+<pre><code>## [1] 2.997616e-50</code></pre>
 </div>
 
 

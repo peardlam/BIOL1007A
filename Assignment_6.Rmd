@@ -1,0 +1,65 @@
+---
+title: "Assignment 6"
+author: "Pearl L. Dlamini"
+date: "2023-01-23"
+output: html_document
+---
+
+### Question 1
+```{r}
+library(tidyverse)
+data(iris)
+glimpse(iris)
+```
+### Question 2
+```{r}
+iris1 <- filter(iris, Species == "virginica" | Species == "versicolor" & Sepal.Length > 6 & Sepal.Width > 2.5)
+glimpse(iris1)
+```
+### Question 3
+```{r}
+iris2 <- select(iris1, Species, Sepal.Length, Sepal.Width)
+glimpse(iris2)
+```
+### Question 4
+```{r}
+iris3 <- arrange (iris2, by=Sepal.Length)
+head(iris3)
+```
+### Question 5
+```{r}
+iris4 <- mutate(iris3, Sepal.Area = Sepal.Length*Sepal.Width)
+glimpse(iris4)
+```
+### Question 6
+```{r}
+irisTab <- summarize(iris4, meanSepal.Length=mean(Sepal.Length, na.rm=TRUE), meanSepal.Width=mean(Sepal.Width, na.rm=TRUE), TotalNumber=n())
+print(irisTab)
+```
+### Questioin 7
+```{r}
+iris5 <- summarize(group_by(iris4, Species), meanSepal.Length=mean(Sepal.Length, na.rm=TRUE), meanSepal.Width=mean(Sepal.Width, na.rm=TRUE), TotalNumber=n())
+print(iris5)
+```
+### Question 8
+```{r}
+irisFinal <- iris %>%
+  filter(Species == "virginica" | Species == "versicolor" & Sepal.Length > 6 & Sepal.Width > 2.5) %>%
+  select(Species, Sepal.Length, Sepal.Width) %>%
+  arrange (by=Sepal.Length) %>%
+  mutate(Sepal.Area = Sepal.Length*Sepal.Width) %>%
+  group_by(Species) %>%
+  summarize(meanSepal.Length=mean(Sepal.Length, na.rm=TRUE), meanSepal.Width=mean(Sepal.Width, na.rm=TRUE), TotalNumber=n())
+print(irisFinal)
+```
+
+
+
+
+
+
+
+
+
+
+

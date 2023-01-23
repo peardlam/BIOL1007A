@@ -6,7 +6,8 @@ output: html_document
 ---
 ### Question 1
 ```{r}
-n_dims <- c(3)
+set.seed(132)
+n_dims <- sample(3:10, 1)
 print(n_dims)
 
 # a.
@@ -14,10 +15,10 @@ v <- seq(1:n_dims^2)
 print(v)
 
 # b. 
-sample(v, size=n_dims^2)
+rand_v <- sample(v, size=n_dims^2)
 
 # c.
-m <- matrix(data = v, nrow=n_dims)
+m <- matrix(data = rand_v, nrow=n_dims)
 print(m)
 
 # d.
@@ -29,8 +30,8 @@ mean(m[1,])
 sum(m[1,])
 
 # e. ii, mean and sum of last row
-mean(m[3,])
-sum(m[3,])
+mean(m[n_dims,])
+sum(m[n_dims,])
 
 
 ```
@@ -45,12 +46,10 @@ my_logical <- (v < 50)
 
 my_letters <- (sample(letters, 26))
 
-my_list <- list(my_matrix, my_logical, my_letters)
-print (my_list)
 
 # b.
-my_list2 <- list(my_matrix[2,2], my_logical[2], my_letters [2])
-print(my_list2)
+my_list <- list(my_matrix[2,2], my_logical[2], my_letters [2])
+print(my_list)
 
 # c.
 typeof(my_matrix[2,2])
@@ -88,7 +87,7 @@ orderedd_Frame <- d_Frame[order(d_Frame$my_letters2),]
 print(orderedd_Frame)
 
 # e.
-mean(my_unifs)
+mean(my_unifs, na.rm = T)
 
 #f 
 colnames(d_Frame)[colnames(d_Frame) == "my_letters2"] <- "my_LETTERS"
