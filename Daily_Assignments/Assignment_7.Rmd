@@ -1,0 +1,93 @@
+---
+title: "Assignment 7"
+author: "Pearl L. Dlamini"
+date: "2023-01-24"
+output: html_document
+---
+### Question 1
+```{r}
+library(dplyr)
+data(starwars)
+starwars2 <- summarise(group_by(starwars, species), totalnumber = n())
+glimpse(starwars2)
+
+# It only includes the species that have more than 1 individual represented in the data set. 
+starwars_species1 <- filter(starwars2, totalnumber != 1)
+glimpse(starwars_species1)
+
+
+  
+
+# It only includes the columns that are not of type list (hint: use glimpse to check)
+starwars_species2 <- starwars[,1:11]
+glimpse(starwars_species2)
+
+starwars_final <- starwars_species2 %>%
+  filter(species %in% starwars_species1$species)
+```
+### Question 2
+```{r}
+# Clean your data set: only include observations/rows that do not have an NA in the height column
+starwarsClean <- starwars_final[complete.cases(starwars_final[,2]),]
+glimpse(starwarsClean)
+
+# Then, use dplyr to print a summary table showing the mean, median, and standard deviation of height for each species.
+starwars_Cleaner <- starwarsClean %>%
+  group_by(species) %>%
+  summarize(meanHeight=mean(height), stdevHeight = sd(height))
+
+```
+### Question 3
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(patchwork)
+library(viridis)
+# Create a box plot figure that shows the variation in heights among Star Wars species. 
+# Code so that each box plot (Species) is be filled with a different color. 
+# Use the theme_minimal()
+cols <- viridis(9, option = "turbo")
+starwars_bp <- ggplot(data = starwarsClean, aes(x=species, y=height, fill=species)) +
+  geom_boxplot() +
+  xlab("Species") +
+  ylab("Height (cm)") +
+  scale_fill_manual(values=cols) +
+  theme_minimal()
+print(starwars_bp)
+
+# Then look into the annotate or geom_text functions and add the text “p=1.2E-0.5” to the top right corner.
+starwars_bp2 <- starwars_bp + annotate("text", x = NA , y = 240, colour = "blue", size = 3, label = "p=1.25E-0.5")
+
+# Overlay the data points onto the box plots (hint: look into geom_jitter or geom_point). 
+starwars_bp2 + geom_point()
+
+# See if you can change the color of the points, depending on the gender or sex variables.
+starwars_bpfinal <- starwars_bp2 + geom_point(aes(colour = factor(gender)))
+```
+### Question 4
+```{r}
+# Create at least one additional (and different kind of) plot
+starwarsClean2 <- starwars_final[complete.cases(starwars_final[,3]),]
+ starwars_bp3 <- ggplot(data=starwarsClean2, aes(x=height,y=mass)) + 
+       geom_point(size=4,
+                  shape=21,
+                  color="magenta",
+                  fill="blue") +
+       labs(title="How is Mass related to Height?",
+            x="Height (cm)",
+            y="Mass (kg)") +
+            xlim(0,240) + ylim(0,140)
+print(starwars_bp3)
+starwars_bp3 + theme_test()
+
+data(mpg)
+str(mpg)
+mpg_histogram <- ggplot(data=mpg, aes(x=cty)) + 
+       geom_histogram (color="red3",fill="green", binwidth = 1.2)
+print(mpg_histogram)
+
+# Finally, create a multi-panel figure with the graphs you created   
+(starwars_bpfinal + starwars_bp3)/ mpg_histogram
+        
+```
+

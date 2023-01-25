@@ -6,6 +6,7 @@ output:
  prettydoc::html_pretty:
     theme: hpstr
     highlight: github
+    css: "style.css"
 ---
 <p style="font-family: times, serif; font-size:14pt; font-style:italic">
 Hi! Welcome to my BIOL007A webpage! My name is Pearl, and I am majoring in Molecular Biology and Biochemistry. I decided to take the BIOL007A course because I am keen on learning how to code using R. Using code in RStudio to create a webpage like this one is an absolute bonus! 
@@ -26,6 +27,8 @@ Below are links to my daily and weekly assignments from class.
 [Assignment 4 & 5](Daily_Assignments/Assignment_4.html)
 
 [Assignment 6](Daily_Assignments/Assignment_6.html)
+
+[Assignment 7](Daily_Assignments/Assignment_7.html)
 
 ## Weekly Assignments
 
