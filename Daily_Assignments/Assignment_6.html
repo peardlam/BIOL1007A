@@ -380,9 +380,9 @@ glimpse(iris)</code></pre>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
-<pre class="r"><code>iris1 &lt;- filter(iris, Species == &quot;virginica&quot; | Species == &quot;versicolor&quot; &amp; Sepal.Length &gt; 6 &amp; Sepal.Width &gt; 2.5)
+<pre class="r"><code>iris1 &lt;- filter(iris, Species == &quot;virginica&quot; | Species == &quot;versicolor&quot;, Sepal.Length &gt; 6,  Sepal.Width &gt; 2.5)
 glimpse(iris1)</code></pre>
-<pre><code>## Rows: 67
+<pre><code>## Rows: 56
 ## Columns: 5
 ## $ Sepal.Length &lt;dbl&gt; 7.0, 6.4, 6.9, 6.5, 6.3, 6.6, 6.1, 6.7, 6.1, 6.1, 6.4, 6.…
 ## $ Sepal.Width  &lt;dbl&gt; 3.2, 3.2, 3.1, 2.8, 3.3, 2.9, 2.9, 3.1, 2.8, 2.8, 2.9, 3.…
@@ -394,7 +394,7 @@ glimpse(iris1)</code></pre>
 <h3>Question 3</h3>
 <pre class="r"><code>iris2 &lt;- select(iris1, Species, Sepal.Length, Sepal.Width)
 glimpse(iris2)</code></pre>
-<pre><code>## Rows: 67
+<pre><code>## Rows: 56
 ## Columns: 3
 ## $ Species      &lt;fct&gt; versicolor, versicolor, versicolor, versicolor, versicolo…
 ## $ Sepal.Length &lt;dbl&gt; 7.0, 6.4, 6.9, 6.5, 6.3, 6.6, 6.1, 6.7, 6.1, 6.1, 6.4, 6.…
@@ -402,33 +402,33 @@ glimpse(iris2)</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
-<pre class="r"><code>iris3 &lt;- arrange (iris2, by=Sepal.Length)
+<pre class="r"><code>iris3 &lt;- arrange (iris2, desc(Sepal.Length)) 
 head(iris3)</code></pre>
 <pre><code>##     Species Sepal.Length Sepal.Width
-## 1 virginica          4.9         2.5
-## 2 virginica          5.6         2.8
-## 3 virginica          5.7         2.5
-## 4 virginica          5.8         2.7
-## 5 virginica          5.8         2.8
-## 6 virginica          5.8         2.7</code></pre>
+## 1 virginica          7.9         3.8
+## 2 virginica          7.7         3.8
+## 3 virginica          7.7         2.6
+## 4 virginica          7.7         2.8
+## 5 virginica          7.7         3.0
+## 6 virginica          7.6         3.0</code></pre>
 </div>
 <div id="question-5" class="section level3">
 <h3>Question 5</h3>
 <pre class="r"><code>iris4 &lt;- mutate(iris3, Sepal.Area = Sepal.Length*Sepal.Width)
 glimpse(iris4)</code></pre>
-<pre><code>## Rows: 67
+<pre><code>## Rows: 56
 ## Columns: 4
 ## $ Species      &lt;fct&gt; virginica, virginica, virginica, virginica, virginica, vi…
-## $ Sepal.Length &lt;dbl&gt; 4.9, 5.6, 5.7, 5.8, 5.8, 5.8, 5.9, 6.0, 6.0, 6.1, 6.1, 6.…
-## $ Sepal.Width  &lt;dbl&gt; 2.5, 2.8, 2.5, 2.7, 2.8, 2.7, 3.0, 2.2, 3.0, 2.9, 2.8, 2.…
-## $ Sepal.Area   &lt;dbl&gt; 12.25, 15.68, 14.25, 15.66, 16.24, 15.66, 17.70, 13.20, 1…</code></pre>
+## $ Sepal.Length &lt;dbl&gt; 7.9, 7.7, 7.7, 7.7, 7.7, 7.6, 7.4, 7.3, 7.2, 7.2, 7.2, 7.…
+## $ Sepal.Width  &lt;dbl&gt; 3.8, 3.8, 2.6, 2.8, 3.0, 3.0, 2.8, 2.9, 3.6, 3.2, 3.0, 3.…
+## $ Sepal.Area   &lt;dbl&gt; 30.02, 29.26, 20.02, 21.56, 23.10, 22.80, 20.72, 21.17, 2…</code></pre>
 </div>
 <div id="question-6" class="section level3">
 <h3>Question 6</h3>
 <pre class="r"><code>irisTab &lt;- summarize(iris4, meanSepal.Length=mean(Sepal.Length, na.rm=TRUE), meanSepal.Width=mean(Sepal.Width, na.rm=TRUE), TotalNumber=n())
 print(irisTab)</code></pre>
 <pre><code>##   meanSepal.Length meanSepal.Width TotalNumber
-## 1         6.561194        2.977612          67</code></pre>
+## 1         6.698214        3.041071          56</code></pre>
 </div>
 <div id="questioin-7" class="section level3">
 <h3>Questioin 7</h3>
@@ -438,7 +438,7 @@ print(iris5)</code></pre>
 ##   Species    meanSepal.Length meanSepal.Width TotalNumber
 ##   &lt;fct&gt;                 &lt;dbl&gt;           &lt;dbl&gt;       &lt;int&gt;
 ## 1 versicolor             6.48            2.99          17
-## 2 virginica              6.59            2.97          50</code></pre>
+## 2 virginica              6.79            3.06          39</code></pre>
 </div>
 <div id="question-8" class="section level3">
 <h3>Question 8</h3>

@@ -13,7 +13,7 @@ glimpse(iris)
 ```
 ### Question 2
 ```{r}
-iris1 <- filter(iris, Species == "virginica" | Species == "versicolor" & Sepal.Length > 6 & Sepal.Width > 2.5)
+iris1 <- filter(iris, Species == "virginica" | Species == "versicolor", Sepal.Length > 6,  Sepal.Width > 2.5)
 glimpse(iris1)
 ```
 ### Question 3
@@ -23,7 +23,7 @@ glimpse(iris2)
 ```
 ### Question 4
 ```{r}
-iris3 <- arrange (iris2, by=Sepal.Length)
+iris3 <- arrange (iris2, desc(Sepal.Length)) 
 head(iris3)
 ```
 ### Question 5

@@ -359,9 +359,11 @@ display: none;
 
 <div id="question-1" class="section level3">
 <h3>Question 1</h3>
-<pre class="r"><code>myFunc &lt;- function(a=10, b=45){
+<pre class="r"><code># Set default function first
+set.seed(123)
+myFunc &lt;- function(mean1=10, sd1=1.5, mean2=45, sd2=2, n=25){
   Type &lt;- rep(c(&quot;Control&quot;, &quot;Treatment&quot;), each=25)  
-  Value &lt;- c(rnorm(25, mean=10, sd=1.5), rnorm(25, mean=45, sd=2))
+  Value &lt;- c(rnorm(n, mean=mean1, sd=sd1), rnorm(n, mean=mean2, sd=sd2))
   d_Frame &lt;- data.frame(Type, Value)
   return(d_Frame)
 }</code></pre>
@@ -371,20 +373,20 @@ display: none;
 <pre class="r"><code>data_Frame &lt;- myFunc()
 head(data_Frame)</code></pre>
 <pre><code>##      Type     Value
-## 1 Control  8.523802
-## 2 Control  9.634401
-## 3 Control  7.974142
-## 4 Control  8.543163
-## 5 Control 10.846001
-## 6 Control 11.680671</code></pre>
+## 1 Control  9.159287
+## 2 Control  9.654734
+## 3 Control 12.338062
+## 4 Control 10.105763
+## 5 Control 10.193932
+## 6 Control 12.572597</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
 <pre class="r"><code>ANOVA &lt;- aov(Value~Type, data = myFunc())
 summary(ANOVA)</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  15258   15258    3779 &lt;2e-16 ***
-## Residuals   48    194       4                   
+## Type         1  15272   15272    4412 &lt;2e-16 ***
+## Residuals   48    166       3                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -393,24 +395,26 @@ summary(ANOVA)</code></pre>
 <pre class="r"><code># Function name: ANOVA_2
 #Input: data frame with two columns
 # Output: p_value
-ANOVA_2 &lt;- function(data_frame = NULL){
-  if (is.null(data_frame)){
-    data_frame &lt;- myFunc()
+ANOVA_2 &lt;- function(df = NULL){
+  if (is.null(df)){
+    df &lt;- data_Frame
   }
   
-  if (length(data_frame)!=2) {
+  if (length(df)!=2) {
     return(&quot;Function failure: data frame must have two columns&quot;)
   }
   
-   #data_frame &lt;- myFunc()
-   colnames(data_frame) &lt;- c(&quot;Explanatory&quot;,&quot;Response&quot;)
-   my_aov &lt;- aov(Response~Explanatory, data = data_frame)
+   #data_frame &lt;- data_Frame
+   colnames(df) &lt;- c(&quot;Explanatory&quot;,&quot;Response&quot;)
+   my_aov &lt;- aov(Response~Explanatory, data = df)
    anova_summary &lt;- summary(my_aov)
    my_out &lt;- c(anova_summary[[1]][&quot;Explanatory&quot;, &quot;Pr(&gt;F)&quot;])
    return(my_out)
 }
 ANOVA_2()</code></pre>
-<pre><code>## [1] 2.997616e-50</code></pre>
+<pre><code>## [1] 1.183614e-51</code></pre>
+<pre class="r"><code>ANOVA_2(myFunc())</code></pre>
+<pre><code>## [1] 1.002742e-51</code></pre>
 </div>
 
 

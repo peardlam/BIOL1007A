@@ -6,9 +6,11 @@ output: html_document
 ---
 ### Question 1
 ```{r}
-myFunc <- function(a=10, b=45){
+# Set default function first
+set.seed(123)
+myFunc <- function(mean1=10, sd1=1.5, mean2=45, sd2=2, n=25){
   Type <- rep(c("Control", "Treatment"), each=25)  
-  Value <- c(rnorm(25, mean=10, sd=1.5), rnorm(25, mean=45, sd=2))
+  Value <- c(rnorm(n, mean=mean1, sd=sd1), rnorm(n, mean=mean2, sd=sd2))
   d_Frame <- data.frame(Type, Value)
   return(d_Frame)
 }
@@ -22,29 +24,30 @@ head(data_Frame)
 ```{r}
 ANOVA <- aov(Value~Type, data = myFunc())
 summary(ANOVA)
-
 ```
 ### Question 4
 ```{r}
 # Function name: ANOVA_2
 #Input: data frame with two columns
 # Output: p_value
-ANOVA_2 <- function(data_frame = NULL){
-  if (is.null(data_frame)){
-    data_frame <- myFunc()
+ANOVA_2 <- function(df = NULL){
+  if (is.null(df)){
+    df <- data_Frame
   }
   
-  if (length(data_frame)!=2) {
+  if (length(df)!=2) {
     return("Function failure: data frame must have two columns")
   }
   
-   #data_frame <- myFunc()
-   colnames(data_frame) <- c("Explanatory","Response")
-   my_aov <- aov(Response~Explanatory, data = data_frame)
+   #data_frame <- data_Frame
+   colnames(df) <- c("Explanatory","Response")
+   my_aov <- aov(Response~Explanatory, data = df)
    anova_summary <- summary(my_aov)
    my_out <- c(anova_summary[[1]]["Explanatory", "Pr(>F)"])
    return(my_out)
 }
 ANOVA_2()
+
+ANOVA_2(myFunc())
 ```
 
