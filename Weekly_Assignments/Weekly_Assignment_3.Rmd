@@ -64,7 +64,7 @@ DryadData2_1 <- DryadData_mwl %>%
   group_by(Egg.2nd) %>%
   filter(Egg.2nd < 60) %>%
   group_by(percent_mother_wt_loss) %>%
-  filter(percent_mother_wt_loss > -7.5)
+  filter(percent_mother_wt_loss > -7.5 & percent_mother_wt_loss < 9)
 
 
 p2 <- ggplot(data=DryadData2_1, aes(x=percent_mother_wt_loss, y=Egg.2nd, color=factor(Mot), na.rm = T)) +

@@ -4,16 +4,32 @@ author: "Pearl L. Dlamini"
 date: "2023-01-26"
 output: html_document
 ---
+
+## Code Reflection
+* Question 2 Assignment 6: The code I used for my data frame was slightly different from the code professor Ash used.
 ```{r}
-# 1. Copy my code into an Rmd file and annotate what each ggplot line of code is doing, including any arguments. You can use a combination of ‘trial/error coding:’ change the arguments/options to visually see how it affects the plot.
+# Mine:
+# iris1 <- filter(iris, Species == "virginica" | Species == "versicolor", Sepal.Length > 6,  Sepal.Width > 2.5)
+
+# Professor Ash's:
+# iris1 <- filter(iris, Species %in% c("virginica", "versicolor"), Sepal.Length > 6, Sepal.Width > 2.5)
+
+```
+* Question 8 Assignment 6: professor Ash included an 'arrange()' command in the piping function, resulting in a different tibble of '2*5'
+
+
+## Code Annotation
+```{r}
+# Copy my code into an Rmd file and annotate what each ggplot line of code is doing, including any arguments. You can use a combination of ‘trial/error coding:’ change the arguments/options to visually see how it affects the plot.
 
 
 library(tidyverse)
 library(ggthemes)
+library(ggplot2)
 
 # Data obtained from Veysey Powell and Babbitt 2016: An experimental test of buffer utility as a technique for managing pool-breeding amphibians
 
-dryadData <- read.table("Data/veysey-babbitt_data_amphibians.csv", header=TRUE, sep=",", stringsAsFactors = TRUE)
+dryadData <- read.table(file= "/Users/pearllangelihledlamini/Documents/reproducible_biology/BIOL1007A/DATA/veysey_babbitt_data_buffers_and_amphibians2.csv", header = TRUE, sep=",", stringsAsFactors = TRUE)
 
 glimpse(dryadData)
 head(dryadData)

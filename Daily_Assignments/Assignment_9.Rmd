@@ -1,0 +1,107 @@
+---
+title: "Daily Assignment 9"
+author: "Pearl L. Dlamini"
+date: "2023-01-30"
+output: html_document
+---
+
+### Question 1
+```{r}
+library(tidyverse)
+library(ggthemes)
+
+# Set up a vector of integers with some zero values
+#----------------------------------------------------------------------------------------
+ran_num <- runif(500)
+num_integer <- ifelse(ran_num > 0.35, rpois(n=500, lambda = 5.1), 0)
+print(num_integer)
+
+# Then set up a counter variable counter <- 0. 
+# Inside the loop, add 1 to counter each time you have a zero in the vector
+#-----------------------------------------------------------------------------------------
+counter <- 0 
+  for (i in 1:length(num_integer)){
+    if (num_integer[i] == 0){counter<-counter+1}
+  }
+print(counter)
+```
+### Question 2
+```{r}
+###############################################################################
+# FUNCTION: matrix_create
+# creates matrix with specific dimensions
+# Inputs: two integers: one representing number of rows (r) and the other representing number of columns (c) in the matrix
+# Output: matrix with r x c dimensions where each element is the product of the row number x the column number
+#----------------------------------------------------------------------------------------
+matrix_create <- function(r = NULL, c = NULL){
+  m <- matrix(NA, nrow = r, ncol = c)
+    for(i in 1:nrow(m)){
+  for(j in 1:ncol(m)){
+    m[i,j] <- i * j
+  }
+    }
+  return(m)
+}
+
+matrix_create(r=7,c=8)
+```
+### Question 3
+```{r}
+###############################################################################
+# FUNCTION: data_Frame
+# Purpose: a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations
+#_____________________________________________________________________________________
+set.seed(123)
+myFunc <- function(mean1=10, sd1=1.5, mean2=45, sd2=2, n=25){
+  Type <- rep(c("Control", "Treatment"), each=25)  
+  Value <- c(rnorm(n, mean=mean1, sd=sd1), rnorm(n, mean=mean2, sd=sd2))
+  d_Frame <- data.frame(Type, Value)
+  return(d_Frame)
+}
+
+
+data_Frame <- myFunc()
+head(data_Frame)
+
+##############################################################################
+# FUNCTION: ANOVA_2
+# Input: data frame with two columns
+# Output: p_value
+#-------------------------------------------------------------------------------
+ANOVA_2 <- function(df = NULL){
+  if (is.null(df)){
+    df <- data_Frame
+  }
+  
+  if (length(df)!=2) {
+    return("Function failure: data frame must have two columns")
+  }
+  
+   #data_frame <- data_Frame
+   colnames(df) <- c("Explanatory","Response")
+   my_aov <- aov(Response~Explanatory, data = df)
+   anova_summary <- summary(my_aov)
+  pValue <- c(anova_summary[[1]]["Explanatory", "Pr(>F)"])
+   return(pValue)
+}
+ANOVA_2()
+ANOVA_2(myFunc())
+
+#############################################################################
+# FUNCTION: rep_func
+# purpose: replicate ANOVA_2 output 100 times
+# Output: data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows).
+#------------------------------------------------------------------------------
+
+p_Values <- data.frame()
+
+for(i in 1:100){
+  data_1 <- myFunc()
+  data_2 <- ANOVA_2(myFunc())
+  intermediate <- data.frame(i, data_2)
+  p_Values <- rbind(p_Values, intermediate)
+}
+
+print(p_Values)
+```
+

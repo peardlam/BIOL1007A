@@ -32,6 +32,10 @@ Below are links to my daily and weekly assignments from class.
 
 [Assignment 7](Daily_Assignments/Assignment_7.html)
 
+[Assignment 8](Daily_Assignments/Assignment_8.html)
+
+[Assignment 9](Daily_Assignments/Assignment_9.html)
+
 ## Weekly Assignments
 
 [Weekly Assignment 1](Weekly_Assignments/Weekly_Assignment.html)
