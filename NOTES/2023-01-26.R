@@ -46,13 +46,37 @@ fish_encounters %>%
 ##### Dryad: makes research data freely reusable, citable, and discoverable
 
 ## read.table()
+DradData <- read.table(file="DATA/Data_set_dryad_2.csv", header=T, sep=",")
 dryadData <- read.table(file="DATA/veysey_babbitt_data_buffers_and_amphibians2.csv", header = TRUE, sep=",")
 glimpse(dryadData)  
 head(dryadData)
-table(dryadData$species)  # allows you to see different groups of character column
+table(dryadData$species)  ### allows you to see different groups of character column
 summary(dryadData$mean.hydro)
-  
-  
+
+
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot
+str(dryadData$species)
+
+class(dryadData$treatment)
+
+dryadData$treatment <- factor(dryadData$treatment, 
+                              levels=c("Reference",
+                                       "100m", "30m"))
+
+p<- ggplot(data=dryadData, 
+           aes(x=interaction(wetland, treatment), # group treatment and wetland
+               y=count.total.adults, fill=factor(year))) + geom_bar(position="dodge", stat="identity", color="black") +
+  ylab("Number of breeding adults") +
+  xlab("") +
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) + ## y axis should be broken up by 100s
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) + # x-axis labels
+  facet_wrap(~species, nrow=2, strip.position="right") +
+  theme_few() + scale_fill_grey() + 
+  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), legend.position="top",  legend.title= element_blank(), axis.title.y = element_text(size=12, face="bold", colour = "black"), strip.text.y = element_text(size = 10, face="bold", colour = "black")) + 
+  guides(fill=guide_legend(nrow=1,byrow=TRUE)) 
+plot(p)
+
+DryadData <- read.table(file="DATA/Data_set_dryad_2.csv",header = TRUE, sep=",", stringsAsFactors = TRUE)
   
   
   
