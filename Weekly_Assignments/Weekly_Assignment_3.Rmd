@@ -58,14 +58,16 @@ p1
 
 ## Multiply the "mother weight loss" column by 100 to get percent values
 DryadData_mwl <- mutate(DryadData, percent_mother_wt_loss = Mother.w.loss*100, .after=Mother.w.loss)
-DryadData2 <- na.omit(DryadData_mwl)
 
 ## remove values not included in graph on figure 2
-DryadData2_1 <- DryadData2 %>%
+DryadData2_1 <- DryadData_mwl %>%
   group_by(Egg.2nd) %>%
-  filter(Egg.2nd < 60 & Egg.2nd > 20)
+  filter(Egg.2nd < 60) %>%
+  group_by(percent_mother_wt_loss) %>%
+  filter(percent_mother_wt_loss > -7.5)
 
-p2 <- ggplot(data=DryadData2_1, aes(x=percent_mother_wt_loss, y=Egg.2nd, color=factor(Mot))) +
+
+p2 <- ggplot(data=DryadData2_1, aes(x=percent_mother_wt_loss, y=Egg.2nd, color=factor(Mot), na.rm = T)) +
   geom_point() +
   geom_point(aes(shape = factor(Mot)), size = 3) +
   scale_shape_manual(values = c(19,1)) +
