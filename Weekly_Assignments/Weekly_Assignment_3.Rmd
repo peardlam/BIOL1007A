@@ -1,0 +1,84 @@
+---
+title: "Weekly Assignment 3"
+author: "Pearl L. Dlamini"
+date: "2023-01-29"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(ggplot2)
+library(repr)
+library(stringr)
+
+# Data obtained from John Eadie and Bruce Lyon 2020: Environmentally-driven escalation of host egg-rejection decimates success of an avian brood parasite
+
+DryadData <- read.table(file="/Users/pearllangelihledlamini/Documents/reproducible_biology/BIOL1007A/DATA/Data_set_dryad_2.csv",header = TRUE, sep=",", stringsAsFactors = TRUE)
+
+glimpse(DryadData)
+head(DryadData)
+
+#### Correlation between mean egg mass and mean weight of nymphs at hatching.
+
+```
+![Figure 1: the one I am trying to recreate](/Users/pearllangelihledlamini/Documents/reproducible_biology/BIOL1007A/data_pic_1.webp)
+
+### My Attempt:
+
+```{r fig.height=6.5, fig.width=6.5}
+
+
+## changing units to the units used in the figure I am recreating
+DryadData_eggmass <- mutate(DryadData, egg_mg = Egg.size*1000, .after=Egg.size)
+options(repr.plot.width = 9, repr.plot.height =9)
+
+p1 <- ggplot(data=DryadData_eggmass, aes(x=egg_mg, y=Nymph.w, na.rm=TRUE)) +
+  geom_point(size=3) +
+  geom_smooth(method = "lm", se = F, color = "black") +
+  xlab("Mean egg mass (mg)") +
+  ylab("Mean weight of nymphs at hatching (g)" ) +
+  scale_y_continuous(breaks = seq(from = 1.1, to = 1.8, by = 0.1)) + 
+  theme_test()
+p1
+
+```
+
+```{r}
+#### Influence of maternal expenditure on egg care on their 2ndclutch.
+```
+
+
+
+![Figure 2: the one I am trying to recreate](/Users/pearllangelihledlamini/Documents/reproducible_biology/BIOL1007A/data_pic.webp)
+
+### My Attempt:
+
+```{r fig.height=6.5, fig.width=6.5}
+
+## Multiply the "mother weight loss" column by 100 to get percent values
+DryadData_mwl <- mutate(DryadData, percent_mother_wt_loss = Mother.w.loss*100, .after=Mother.w.loss)
+DryadData2 <- na.omit(DryadData_mwl)
+
+## remove values not included in graph on figure 2
+DryadData2_1 <- DryadData2 %>%
+  group_by(Egg.2nd) %>%
+  filter(Egg.2nd < 60 & Egg.2nd > 20)
+
+p2 <- ggplot(data=DryadData2_1, aes(x=percent_mother_wt_loss, y=Egg.2nd, color=factor(Mot))) +
+  geom_point() +
+  geom_point(aes(shape = factor(Mot))) +
+  scale_shape_manual(values = c(1,19)) +
+  scale_color_manual(values = c(Yes="grey", No="black")) +
+  stat_smooth(method = "lm", se = F) +
+  xlab("Mother weight loss during the care of 1st clutch eggs") +
+  ylab("Number of 2nd clutch eggs (squared scale)") +
+  scale_x_continuous(breaks = c(-5.0,0.0,5.0)) +
+  scale_y_continuous(breaks =c(0.0, 22.4,31.6,38.7,44.7,54.8,59.2)) +
+  labs(y = paste0("Number of 2nd clutch eggs", "\n", "(squared scale)")) +
+  labs(x = paste0("Mother weight loss", "\n", "during the care of 1st clutch eggs")) +
+  theme_test() + 
+  theme(legend.position = "none")
+p2
+```
+

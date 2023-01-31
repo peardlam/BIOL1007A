@@ -1,0 +1,46 @@
+---
+title: "Assignment 8"
+author: "Pearl L. Dlamini"
+date: "2023-01-26"
+output: html_document
+---
+```{r}
+# 1. Copy my code into an Rmd file and annotate what each ggplot line of code is doing, including any arguments. You can use a combination of ‘trial/error coding:’ change the arguments/options to visually see how it affects the plot.
+
+
+library(tidyverse)
+library(ggthemes)
+
+# Data obtained from Veysey Powell and Babbitt 2016: An experimental test of buffer utility as a technique for managing pool-breeding amphibians
+
+dryadData <- read.table("Data/veysey-babbitt_data_amphibians.csv", header=TRUE, sep=",", stringsAsFactors = TRUE)
+
+glimpse(dryadData)
+head(dryadData)
+table(dryadData$species)
+
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot
+
+# class(dryadData$treatment)
+dryadData$treatment <- factor(dryadData$treatment, 
+            levels=c("Reference",
+                     "100m", "30m"))
+
+
+p<- ggplot(data=dryadData, 
+       aes(x=interaction(wetland, treatment), # interaction() computes a factor which represents the interaction between groups treatment and wetland
+           y=count.total.adults, fill=factor(year))) + # fill=factor(year) assigns different color to each bar, each bar represents # of breeding adults per year
+  geom_bar(position = "dodge", stat="identity", color="black") + # default position is stacking, "dodge" makes the bars stand side by side and not stacked on top of each other.
+  # stat ="identity" tells geom_bar that your data has 'y' values, # color assigns an outline to the border of the bars with the specified value
+  ylab("Number of breeding adults") + # y-axis title
+  xlab("") + # x-axis title
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) + ## y axis should be broken up by 100s
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) + # a-xis labels
+  facet_wrap(~species, nrow=2, strip.position="right") + # assigns column names to graph titles, and then positions these graph titles where you want them to be
+  theme_few() + scale_fill_grey() + # assigns a color palette to the bars, can also use scale_fill_hue, scale_fill_brewer, paletteer::scale_fill_paletteer_d
+  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), # adds a border and fill to the panels with the color and fill assigned
+        legend.position="top",  legend.title= element_blank(), axis.title.y = element_text(size=12, face="bold", colour = "black"), strip.text.y = element_text(size = 10, face="bold", colour = "black")) + # element_text edits text assigned by '=' operator 
+guides(fill=guide_legend(nrow=1,byrow=TRUE)) # displays the items in the legend in one straight row/ line 
+print(p)
+```
+
