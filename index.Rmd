@@ -6,13 +6,13 @@ output:
  prettydoc::html_pretty:
     theme: hpstr
     highlight: github
-    css: "style.css"
+    css: index.css
 ---
 <p style="font-family: times, new roman; font-size:14pt; font-style:italic">
 Hi! Welcome to my BIOL007A webpage! My name is Pearl, and I am majoring in Molecular Biology and Biochemistry. I decided to take the BIOL007A course because I am keen on learning how to code using R. Using code in RStudio to create a webpage like this one is an absolute bonus! 
 </p>
 
-![](wallpaper.jpeg){#id .class width=100% height=30%}
+
 
 <p style="font-family: times, serif; font-size:12pt; font-style:standard">
 Below are links to my daily and weekly assignments from class.

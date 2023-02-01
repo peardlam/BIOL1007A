@@ -1,0 +1,7 @@
+body {
+    background-image: url("/Users/pearllangelihledlamini/Documents/reproducible_biology/BIOL1007A/flowers.jpeg");
+}
+
+div.header-title-wrap {
+    background-image: linear-gradient(purple, #663399,indigo);
+}

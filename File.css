@@ -1,25 +1,19 @@
-```{css my-header-colors, echo = FALSE}
-.page-header {
-    background-image: linear-gradient(120deg, red, orange);
-}
-```
 
-#sidebar {
-  background: #0F4880;
+body{
+    font-family: helvetica, arial, freesans, clean, sans-serif;
+    color: #333;
+    background-color: lightgrey;
+    border-color: #999999;
+    border-width: 2px;
+    line-height: 1.5;
+    text-align:center;
 }
-#postamble {
-  background:#003366;
-  border-top:solid 10px #5A7B9C;
-}
+
 .title {
-  text-align: center;
-  color: #003366;
+  color: midnightblue;
+  font-size: xx-large;
+  font-family: copperplate, fantasy;
 }
-.subtitle {
-  color: #0D3A66;
-}
-h1, h2, h3, h4, h5, h6, legend {
-  color: #003366;
-}
-#content h2 {
-    background-color: #AEBFD1
+
+
+

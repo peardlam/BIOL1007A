@@ -1,0 +1,43 @@
+---
+title: "Final Assignment"
+author: "Pearl L. Dlamini"
+date: "2023-01-31"
+output: 
+ html_document:
+  includes:
+   in_header: header.html
+css: "File.css"
+---
+
+<p style="font-family: serif; font-size:16pt; font-style:bold">**The purpose of this study was to explore the tolerance of Escherichia coli to the antimicrobial Triclosan, as well as to investigate the fitness cost of antibiotic resistance in Escherichia coli.**</p>
+
+<p style="font-family: times, new roman; font-size:16pt; font-style:italic">
+Research Question: Does Triclosan affect the fitness of Escherichia coli? </p>
+```{r class.source="bg-info", class.output="bg-success"}
+library(tidyverse)
+library(ggthemes)
+
+### Load in my data:
+
+Bio_0145_data <- read.table(file= "/Users/pearllangelihledlamini/Documents/reproducible_biology/BIOL1007A/DATA/Final_Data.csv", header = TRUE, sep=",", stringsAsFactors = TRUE)
+
+glimpse(Bio_0145_data)
+head(Bio_0145_data)
+
+### delete columns that have NA values
+Clean_BioData <- select(Bio_0145_data, -c(X,X.1,X.2,X.3,X.4,X.5,X.6,X.7,X.8,X.9))
+print(Clean_BioData)
+
+### standardizing values: subtract absorbance values at time = 0min from all values in the row, so that new data contains 0 ABS at time = 0min
+Std_BioData <- Clean_BioData %>%
+  mutate(.keep=c("unused"), X0min_1 = X0min-X0min, X30min_1=X30min-X0min, X60min_1 = X60min-X0min, X120min_1 = X120min-X0min, X150min_1 = X150min-X0min)
+print(Std_BioData)
+
+### rearrange columns so that they are in a more logical order
+Std_BioData_2 <- Std_BioData[, c(1, 3, 4, 5, 2, 6, 7)]
+print(Std_BioData_2)
+
+### Calculate
+
+```
+
