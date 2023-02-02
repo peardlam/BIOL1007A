@@ -44,3 +44,6 @@ Below are links to my daily and weekly assignments from class.
 
 [Weekly Assignment 3](Weekly_Assignments/Weekly_Assignment_3.html)
 
+## Final Assignment
+[Resistance of E-coli to Triclosan]()
+
