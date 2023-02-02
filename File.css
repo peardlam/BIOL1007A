@@ -13,7 +13,14 @@ body{
   color: midnightblue;
   font-size: xx-large;
   font-family: copperplate, fantasy;
+  text-align: center;
 }
 
+div.container-fluid.main-container {
+  width: 1000px;
+}
 
+pre.r.bg-info {
+  text-align: left
+}
 

@@ -144,7 +144,7 @@ varA <- 1:12
 varB <- rep(c("Con", "LowN", "HighN"), each=4)
 varC <- runif(12)
 
-dFrame <- data.frame(varA, varB, varC, stringsAsFactors = FALSE)
+dFrame <- data.frame(varA, varB, varC, stringsAsFactors = T)
 str(dFrame)
 
 # add another row
