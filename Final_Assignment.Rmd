@@ -95,11 +95,11 @@ p <- ggplot(data = Data_Frame_Final, mapping = aes(x=Time)) +
                      values=c("Stock (control)"= "blue", "Triclosan"="red")) +
   xlab ("Time (min)") +
   ylab ("Mean Absorbance Values (OD_600)") +
-  scale_y_continuous(breaks = c(0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7)) +
+  scale_y_continuous(breaks = c(0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7), limits = c(0.0,0.7)) +
   scale_x_continuous(breaks = c(0,30,60,90,120,150)) +
   theme_test() +
   theme(
-    legend.position = c(.3, .95),
+    legend.position = c(.55, .95),
     legend.justification = c("left", "top"),
     legend.box.just = "left",
     legend.margin = margin(6, 6, 6, 6),
