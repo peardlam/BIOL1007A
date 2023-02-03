@@ -19,7 +19,6 @@ library(ggthemes)
 library(plotrix)
 library(repr)
 library(stringr)
-library(data.table)
 library(ggplot2)
 
 ### Load in my data:

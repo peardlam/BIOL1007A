@@ -1,0 +1,60 @@
+---
+title: "Weekly Assignment 4"
+author: "Pearl L. Dlamini"
+date: "2023-02-02"
+output: html_document
+---
+Simulate a brand new data frame (the type of data is up to you) and conduct a statistical analysis in R using 2 variables. Create a basic ggplot that goes with the analysis.
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+
+data(iris)
+glimpse(iris)
+
+### I will perform a linear regression analysis between petal length and petal width
+# Two variables: Species and petal witdh
+# Simple regression
+# Plot: scatterplot
+
+petal.width.species.lm <- lm(Petal.Width~Petal.Length, data=iris)
+summary(petal.width.species.lm)
+
+p <- ggplot(data=iris, aes(x=Petal.Length, y=Petal.Width, color=Species, na.rm = T)) +
+  geom_point(aes(shape = Species), size = 1.5) +
+  guides(color = guide_legend(title = "Species")) +
+  scale_shape_manual(values = c(5,11,17)) +
+  scale_color_manual(values = c(setosa="red", versicolor="green", virginica="orange")) +
+  stat_smooth(method = "lm", se = F) +
+  xlab("Petal Length (cm)") +
+  ylab("Petal Width (cm)") +
+  theme_classic() +
+  theme(
+    legend.position = c(.75, .35),
+    legend.justification = c("left", "top"),
+    legend.box.just = "left",
+    legend.margin = margin(6, 6, 6, 6))
+p
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
